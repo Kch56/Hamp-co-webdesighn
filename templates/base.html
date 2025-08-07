@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}HampCo Web Design{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      /* allow content to scroll */
+      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      /* remove overflow:hidden so page can scroll */
+      /* overflow: hidden; */
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #2c5364, #00b4db, #0083b0);
+      background-size: 400% 400%;
+      animation: GradientShift 20s ease infinite;
+      position: relative;
+    }
+
+    @keyframes GradientShift {
+      0%   { background-position:   0%   50%; }
+      25%  { background-position:  50%  100%; }
+      50%  { background-position: 100%   50%; }
+      75%  { background-position:  50%    0%; }
+      100% { background-position:   0%   50%; }
+    }
+
+    /* floating color blobs */
+    body::before,
+    body::after {
+      content: "";
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(150px);
+      opacity: 0.7;
+      animation: blobMove 25s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    body::before {
+      top: -20%;
+      left: -10%;
+      background: #ff6ec7;
+    }
+
+    body::after {
+      bottom: -20%;
+      right: -10%;
+      background: #00e0ff;
+      animation-duration: 30s;
+    }
+
+    @keyframes blobMove {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(20%, -15%) scale(1.1); }
+      66%  { transform: translate(-10%, 25%) scale(0.9); }
+      100% { transform: translate(0, 0) scale(1); }
+    }
+
+    /* navbar */
+    nav.navbar {
+      background-color: #121212;
+      padding: 15px 30px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffd700;
+    }
+
+    /* main & footer */
+    main {
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #ccc;
+      position: relative;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="{{ url_for('home') }}" class="logo">HampCo</a>
+      <div class="nav-links">
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('projects') }}">Projects</a>
+        <a href="{{ url_for('services') }}">Services</a>
+        <a href="{{ url_for('pricing') }}">Pricing</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>© 2025 HampCo Web Design. All rights reserved.</p>
+  </footer>
+</body>
+</html>

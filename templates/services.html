@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Services – HampCo Web Design{% endblock %}
+
+{% block content %}
+<style>
+  .page-intro {
+    text-align: center;
+    margin: 60px auto 40px;
+    max-width: 800px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  .page-intro h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(90deg, #FFD700, #FF8C00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+  }
+  .page-intro p {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    animation: fadeIn 1s ease-in-out 0.5s both;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .service-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+  .service-card p {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .service-card a.button {
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: #ffd700;
+    color: #000;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .service-card a.button:hover {
+    background-color: #e6c200;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="page-intro">
+  <h1>What I Offer</h1>
+  <p>From full-stack Flask sites to custom Canva graphics, here are the services I provide to bring your brand online.</p>
+</div>
+
+<div class="services-grid">
+  <div class="service-card">
+    <h3>Custom Flask Development</h3>
+    <p>Dynamic, scalable web applications built with Flask—complete routing, templates, and database integration.</p>
+    <a href="{{ url_for('contact') }}" class="button">Get Started</a>
+  </div>
+
+  <div class="service-card">
+    <h3>Responsive Web Design</h3>
+    <p>Mobile-first layouts using HTML5, CSS3, and modern frameworks—your site will look great on any device.</p>
+    <a href="{{ url_for('contact') }}" class="button">Get Started</a>
+  </div>
+
+  <div class="service-card">
+    <h3>Canva Graphics & Branding</h3>
+    <p>Eye-catching logos, social graphics, and visual assets crafted in Canva to complement your website.</p>
+    <a href="{{ url_for('contact') }}" class="button">Get Started</a>
+  </div>
+
+  <div class="service-card">
+    <h3>Site Hosting & Deployment</h3>
+    <p>Seamless deployment to Render (or your preferred host), plus ongoing monitoring and updates.</p>
+    <a href="{{ url_for('contact') }}" class="button">Get Started</a>
+  </div>
+</div>
+{% endblock %}

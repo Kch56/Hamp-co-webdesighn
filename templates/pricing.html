@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Pricing – HampCo Web Design{% endblock %}
+
+{% block content %}
+<style>
+  .page-intro {
+    text-align: center;
+    margin: 60px auto 40px;
+    max-width: 800px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  .page-intro h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(90deg, #FFD700, #FF8C00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+  }
+  .page-intro p {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    animation: fadeIn 1s ease-in-out 0.5s both;
+  }
+
+  .plan-card {
+    background: rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .plan-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .plan-title {
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .plan-price {
+    font-size: 2.2rem;
+    color: #ffd700;
+    margin-bottom: 20px;
+  }
+
+  .plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    color: #ccc;
+    text-align: left;
+  }
+  .plan-features li {
+    margin-bottom: 8px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .plan-features li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #ffd700;
+  }
+
+  .plan-card a.button {
+    display: inline-block;
+    padding: 10px 22px;
+    background-color: #ffd700;
+    color: #000;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  .plan-card a.button:hover {
+    background-color: #e6c200;
+    transform: translateY(-2px);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="page-intro">
+  <h1>Beginner-Friendly Pricing</h1>
+  <p>No surprises—just pick the tier that fits your project size and budget, or <a href="{{ url_for('contact') }}" style="color:#ffd700;">tell me your range</a> for a custom quote.</p>
+</div>
+
+<div class="pricing-grid">
+  <!-- Basic -->
+  <div class="plan-card">
+    <div class="plan-title">Basic</div>
+    <div class="plan-price">$50–$150</div>
+    <ul class="plan-features">
+      <li>1–2 pages (Home & Contact)</li>
+      <li>Responsive layout</li>
+      <li>Contact form</li>
+    </ul>
+    <a href="{{ url_for('contact') }}" class="button">Choose Basic</a>
+  </div>
+
+  <!-- Standard -->
+  <div class="plan-card">
+    <div class="plan-title">Standard</div>
+    <div class="plan-price">$160–$250</div>
+    <ul class="plan-features">
+      <li>3–4 pages (incl. About, Services)</li>
+      <li>Custom Canva graphics</li>
+      <li>Basic SEO setup</li>
+    </ul>
+    <a href="{{ url_for('contact') }}" class="button">Choose Standard</a>
+  </div>
+
+  <!-- Premium -->
+  <div class="plan-card">
+    <div class="plan-title">Premium</div>
+    <div class="plan-price">$260+</div>
+    <ul class="plan-features">
+      <li>5+ pages (Blog, Portfolio, etc.)</li>
+      <li>CMS integration</li>
+      <li>Performance optimization</li>
+    </ul>
+    <a href="{{ url_for('contact') }}" class="button">Choose Premium</a>
+  </div>
+</div>
+{% endblock %}

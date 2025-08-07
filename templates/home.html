@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Home - HampCo Web Design{% endblock %}
+
+{% block content %}
+<style>
+  /* Hero */
+  .hero {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    max-width: 1000px; margin: 60px auto 40px; padding: 40px 20px; text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  .hero h1 {
+    font-size: 3.4rem; margin-bottom: 20px; font-weight: bold;
+    background: linear-gradient(90deg, #FFD700, #FF8C00);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 1.2rem; max-width: 700px; line-height: 1.7; color: #e0e0e0; margin-bottom: 35px;
+  }
+  .button-group {
+    display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+  }
+  .button-group a {
+    padding: 12px 28px; background-color: #ffd700; color: #000; font-weight: 600;
+    border-radius: 10px; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+  }
+  .button-group a:hover {
+    background-color: #e6c200; transform: scale(1.05);
+  }
+
+  /* Process / How It Works */
+  .process {
+    margin: 60px auto; max-width: 800px; display: flex; justify-content: center;
+    gap: 40px; padding: 0 20px; text-align: center;
+    animation: fadeIn 1s ease-in-out 0.5s both;
+  }
+  .step {
+    flex: 1;
+  }
+  .step .circle {
+    width: 60px; height: 60px; border-radius: 50%; background-color: #ffd700;
+    color: #000; display: flex; align-items: center; justify-content: center;
+    font-weight: bold; margin: 0 auto 15px;
+  }
+  .step h4 {
+    color: white; font-size: 1.1rem; margin-bottom: 8px;
+  }
+  .step p {
+    color: #ccc; font-size: 0.95rem; line-height: 1.4;
+  }
+
+  /* Highlights */
+  .highlights {
+    margin: 80px auto; display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 30px; padding: 0 20px; animation: fadeIn 1s ease-in-out 1s both;
+  }
+  .highlight {
+    background: rgba(255, 255, 255, 0.07); border-radius: 16px; padding: 25px 20px;
+    max-width: 300px; text-align: left; box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+  }
+  .highlight:hover { transform: translateY(-6px); }
+  .highlight h3 { color: #fff; margin-bottom: 12px; font-size: 1.2rem; }
+  .highlight p { color: #ccc; font-size: 0.95rem; line-height: 1.5; }
+
+  /* Animations & Responsive */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.6rem; }
+    .hero p { font-size: 1rem; }
+    .process { flex-direction: column; gap: 20px; }
+    .step .circle { width: 50px; height: 50px; }
+    .highlights { gap: 20px; }
+  }
+</style>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Modern Websites. Designed to Impress.</h1>
+  <p>At HampCo Web Design, I build clean, fast, and visually compelling websites using Flask and Canva — perfect for startups, brands, creators, and small businesses.</p>
+  <div class="button-group">
+    <a href="{{ url_for('projects') }}">View My Work</a>
+    <a href="{{ url_for('contact') }}">Get a Website</a>
+  </div>
+</div>
+
+<!-- Process / How It Works -->
+<div class="process">
+  <div class="step">
+    <div class="circle">1</div>
+    <h4>Chat</h4>
+    <p>Share your vision &amp; goals — we’ll brainstorm together.</p>
+  </div>
+  <div class="step">
+    <div class="circle">2</div>
+    <h4>Build</h4>
+    <p>I code, design, and iterate with you until it’s perfect.</p>
+  </div>
+  <div class="step">
+    <div class="circle">3</div>
+    <h4>Launch</h4>
+    <p>Deploy to Render, optimize, and celebrate your new site!</p>
+  </div>
+</div>
+
+<!-- Highlights -->
+<div class="highlights">
+  <div class="highlight">
+    <h3>⚡ Fast &amp; Responsive</h3>
+    <p>Every site looks great on phones, tablets, and desktops — with quick loading times and smooth UI.</p>
+  </div>
+  <div class="highlight">
+    <h3>🎨 Custom Design</h3>
+    <p>Fully tailored to your brand using Canva and custom code — no generic templates here.</p>
+  </div>
+  <div class="highlight">
+    <h3>🚀 Built for Results</h3>
+    <p>Whether it’s to get clients, sell products, or showcase your work — your site will have purpose and impact.</p>
+  </div>
+</div>
+{% endblock %}
+

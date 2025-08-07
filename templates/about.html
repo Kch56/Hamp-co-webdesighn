@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}About – HampCo Web Design{% endblock %}
+
+{% block content %}
+<style>
+  .about-container {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    margin-bottom: 20px;
+  }
+
+  .about-container h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    background: linear-gradient(90deg, #FFD700, #FF8C00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .about-container p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-container h2 {
+    font-size: 1.8rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+  .what-i-do {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 40px;
+    max-width: 600px;
+    text-align: left;
+    color: #ccc;
+  }
+  .what-i-do li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 24px;
+  }
+  .what-i-do li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #ffd700;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto 60px;
+  }
+  .skill {
+    background: rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 15px;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease;
+  }
+  .skill:hover {
+    transform: translateY(-4px);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .about-container h1 { font-size: 2.4rem; }
+    .about-container p { font-size: 1rem; }
+  }
+</style>
+
+<div class="about-container">
+  <img class="profile-pic" src="{{ url_for('static', filename='picofme.jfif') }}" alt="Kyle Hampton">
+  <h1>Hi, I’m Kyle Hampton</h1>
+<p>
+  I’m a senior at UNC Charlotte majoring in Management Information Systems and Data Science. Through internships and self-driven projects like Cash Compass, the Charlotte Risk Intelligence Dashboard, and several Flask web apps, I’ve honed my skills in full-stack web development, data visualization, and graphic design with Canva. I love blending data-driven insights with clean, responsive design to build websites that look great and perform even better.
+</p>
+
+
+  <h2>What I Do</h2>
+  <ul class="what-i-do">
+    <li>Custom Flask web applications</li>
+    <li>Responsive, mobile-first design</li>
+    <li>Branding & graphics in Canva</li>
+    <li>Interactive maps & data visualizations</li>
+    <li>Deployment & maintenance on Render</li>
+  </ul>
+
+  <h2>Skills & Tools</h2>
+  <div class="skills-grid">
+    <div class="skill">Flask & Python</div>
+    <div class="skill">HTML & CSS</div>
+    <div class="skill">JavaScript</div>
+    <div class="skill">Canva</div>
+    <div class="skill">Databases</div>
+  </div>
+</div>
+{% endblock %}

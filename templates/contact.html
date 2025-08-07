@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Contact – HampCo Web Design{% endblock %}
+
+{% block content %}
+<style>
+  .contact-container {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 40px 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    animation: fadeIn 0.8s ease-out;
+  }
+  .contact-container h1 {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg,#FFD700,#FF8C00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .contact-form label {
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    resize: vertical;
+  }
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #bbb;
+  }
+  .contact-form button {
+    padding: 12px;
+    background-color: #ffd700;
+    color: #000;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  .contact-form button:hover {
+    background-color: #e6c200;
+    transform: translateY(-2px);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 600px) {
+    .contact-container { padding: 30px 15px; }
+    .contact-container h1 { font-size: 2.2rem; }
+  }
+</style>
+
+<div class="contact-container">
+  <h1>Tell Me About Your Project</h1>
+
+  <form class="contact-form" method="POST" action="{{ url_for('contact') }}">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" placeholder="Jane Doe" required>
+
+    <label for="email">Your Email</label>
+    <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+
+    <label for="project_type">Project Type</label>
+    <input type="text" id="project_type" name="project_type" placeholder="e.g. Portfolio website" required>
+
+    <label for="budget">Estimated Budget</label>
+    <input type="text" id="budget" name="budget" placeholder="$500 – $2,000, etc.">
+
+    <label for="timeline">Desired Launch Timeline</label>
+    <input type="text" id="timeline" name="timeline" placeholder="e.g. Next 4 weeks">
+
+    <label for="details">Additional Details</label>
+    <textarea id="details" name="details" placeholder="Tell me more about your goals…" required></textarea>
+
+    <button type="submit">Send Request</button>
+  </form>
+</div>
+{% endblock %}

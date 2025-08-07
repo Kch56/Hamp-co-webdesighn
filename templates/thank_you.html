@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Thank You – HampCo Web Design{% endblock %}
+
+{% block content %}
+<style>
+  .thank-container {
+    max-width: 600px;
+    margin: 100px auto;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+  }
+  .thank-container h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(90deg,#FFD700,#FF8C00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+  }
+  .thank-container p {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="thank-container">
+  <h1>Thank You!</h1>
+  <p>Your message has been sent. I’ll review it and get back to you within 24 hours.</p>
+  <p><a href="{{ url_for('home') }}" style="color:#ffd700; text-decoration:none;">Return Home</a></p>
+</div>
+{% endblock %}

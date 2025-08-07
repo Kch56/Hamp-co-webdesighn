@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}Projects – HampCo Web Design{% endblock %}
+
+{% block content %}
+<style>
+  .page-intro {
+    text-align: center;
+    margin: 60px auto 40px;
+    max-width: 800px;
+    animation: fadeIn 1s ease-in-out;
+  }
+  .page-intro h1 {
+    font-size: 2.8rem;
+    background: linear-gradient(90deg, #FFD700, #FF8C00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+  }
+  .page-intro p {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    animation: fadeIn 1s ease-in-out 0.5s both;
+  }
+
+  .project-card {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .project-card img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+  }
+
+  .project-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-title {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .project-desc {
+    flex: 1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #ccc;
+    margin-bottom: 20px;
+  }
+  .project-card a.button {
+    align-self: start;
+    padding: 10px 20px;
+    background-color: #ffd700;
+    color: #000;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .project-card a.button:hover {
+    background-color: #e6c200;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<div class="page-intro">
+  <h1>My Projects</h1>
+  <p>Below are a few highlights of sites I’ve built—each fully responsive, custom-designed in Canva, and brought to life with Flask.</p>
+</div>
+
+<div class="projects-grid">
+  <div class="project-card">
+    <img src="{{ url_for('static', filename='project_img/cashcompass.png') }}" alt="Cash Compass">
+    <div class="project-content">
+      <div class="project-title">Cash Compass</div>
+      <div class="project-desc">
+        A Flask-driven finance dashboard for tracking expenses, budgets, and investments—complete with interactive charts and alerts.
+      </div>
+      <a href="https://cash-compass-dwpr.onrender.com/welcome" class="button">View Project</a>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <img src="{{ url_for('static', filename='project_img/courtneyspage.png') }}" alt="Courtney's Creations">
+    <div class="project-content">
+      <div class="project-title">Courtney’s Creations</div>
+      <div class="project-desc">
+        A gamified cookie-themed site built for a local bakery—custom product pages, order form, and fun interactive visuals.
+      </div>
+      <a href="https://courtneyscreations.my.canva.site/" class="button">View Project</a>
+    </div>
+  </div>
+
+  <div class="project-card">
+    <img src="{{ url_for('static', filename='project_img/tbtreats.png') }}" alt="TB Treats">
+    <div class="project-content">
+      <div class="project-title">TB Treats</div>
+      <div class="project-desc">
+        An e-commerce platform for cookie packs with dynamic pack-size selector and real-time cart updates—crafted with Flask and custom CSS.
+      </div>
+      <a href="https://tb-treats.onrender.com/" class="button">View Project</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
