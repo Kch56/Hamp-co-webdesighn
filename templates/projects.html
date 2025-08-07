@@ -119,6 +119,17 @@
   </div>
 
   <div class="project-card">
+    <img src="{{ url_for('static', filename='project_img/kyleport.png') }}" alt="Kyle Hampton Portfolio">
+    <div class="project-content">
+      <div class="project-title">Kyle Hampton Portfolio</div>
+      <div class="project-desc">
+        A personal portfolio site showcasing my work—built with Flask and featuring a sleek, modern design and it showcases my resume other projects and a contact form.
+      </div>
+      <a href="https://kyle-portfolio-web.onrender.com/" class="button">View Project</a>
+    </div>
+  </div>
+
+  <div class="project-card">
     <img src="{{ url_for('static', filename='project_img/tbtreats.png') }}" alt="TB Treats">
     <div class="project-content">
       <div class="project-title">TB Treats</div>
@@ -129,4 +140,5 @@
     </div>
   </div>
 </div>
+
 {% endblock %}
