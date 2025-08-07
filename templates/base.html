@@ -4,25 +4,31 @@
   <meta charset="UTF-8">
   <title>{% block title %}HampCo Web Design{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="{{ url_for('static', filename='logofornow.png') }}">
 
   <style>
-    /* reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html, body {
-      min-height: 100vh;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* ANIMATED GRADIENT BACKGROUND */
     body {
       background: linear-gradient(135deg, #0f2027, #2c5364, #00b4db, #0083b0);
       background-size: 400% 400%;
+      background-attachment: fixed;
       animation: GradientShift 20s ease infinite;
       position: relative;
     }
-
     @keyframes GradientShift {
       0%   { background-position:   0%   50%; }
       25%  { background-position:  50%  100%; }
@@ -31,7 +37,7 @@
       100% { background-position:   0%   50%; }
     }
 
-    /* floating color blobs */
+    /* FLOATING COLOR BLOBS */
     body::before,
     body::after {
       content: "";
@@ -42,10 +48,19 @@
       filter: blur(150px);
       opacity: 0.7;
       animation: blobMove 25s ease-in-out infinite;
-      z-index: -1;
+      z-index: 0;
     }
-    body::before { top: -20%; left: -10%; background: #ff6ec7; }
-    body::after  { bottom: -20%; right: -10%; background: #00e0ff; animation-duration: 30s; }
+    body::before {
+      top: -20%;
+      left: -10%;
+      background: #ff6ec7;
+    }
+    body::after {
+      bottom: -20%;
+      right: -10%;
+      background: #00e0ff;
+      animation-duration: 30s;
+    }
     @keyframes blobMove {
       0%   { transform: translate(0, 0) scale(1); }
       33%  { transform: translate(20%, -15%) scale(1.1); }
@@ -53,13 +68,13 @@
       100% { transform: translate(0, 0) scale(1); }
     }
 
-    /* navbar */
+    /* NAVBAR */
     nav.navbar {
       background-color: #121212;
       padding: 15px 30px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.4);
       position: relative;
-      z-index: 1;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -69,6 +84,14 @@
       font-weight: bold;
       color: white;
       text-decoration: none;
+    }
+    .nav-toggle {
+      display: none;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
     }
     .nav-links {
       display: flex;
@@ -84,17 +107,7 @@
       color: #ffd700;
     }
 
-    /* hamburger toggle */
-    .nav-toggle {
-      display: none;
-      font-size: 1.8rem;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-
-    /* main & footer */
+    /* MAIN & FOOTER */
     main {
       padding: 40px 20px;
       position: relative;
@@ -109,10 +122,11 @@
       z-index: 1;
     }
 
-    /* responsive */
+    /* MOBILE RESPONSIVE */
     @media (max-width: 768px) {
       .nav-toggle {
         display: block;
+        z-index: 3;
       }
       .nav-links {
         position: absolute;
@@ -122,6 +136,7 @@
         background-color: #121212;
         flex-direction: column;
         display: none;
+        z-index: 2;
       }
       .nav-links.active {
         display: flex;
@@ -135,7 +150,7 @@
 <body>
   <nav class="navbar">
     <a href="{{ url_for('home') }}" class="logo">HampCo</a>
-    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     <div class="nav-links">
       <a href="{{ url_for('home') }}">Home</a>
       <a href="{{ url_for('projects') }}">Projects</a>
@@ -155,10 +170,9 @@
   </footer>
 
   <script>
-    const toggle = document.querySelector('.nav-toggle');
-    const links = document.querySelector('.nav-links');
-    toggle.addEventListener('click', () => {
-      links.classList.toggle('active');
+    // Mobile menu toggle
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('active');
     });
   </script>
 </body>
