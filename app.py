@@ -9,8 +9,8 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
-app.config['MAIL_USERNAME'] = 'kylehampton949@gmail.com'
-app.config['MAIL_PASSWORD'] = 'eqme fbeu azpl sebc'
+app.config['MAIL_USERNAME'] = 'hampco.web@gmail.com'
+app.config['MAIL_PASSWORD'] = 'rqfw ekxe klvd unrn'
 app.config['MAIL_DEFAULT_SENDER'] = app.config['MAIL_USERNAME']
 
 mail = Mail(app)
@@ -41,11 +41,13 @@ def contact():
         timeline     = request.form.get('timeline', 'N/A')
         details      = request.form['details']
 
-        msg = Message(
+        # Email to YOU
+        owner_msg = Message(
             subject=f"Project Inquiry: {project_type}",
-            recipients=[app.config['MAIL_USERNAME']]
+            recipients=[app.config['MAIL_USERNAME']],
+            reply_to=email  # so you can reply straight to the client
         )
-        msg.body = f"""You have a new project inquiry:
+        owner_msg.body = f"""You have a new project inquiry:
 
 Name: {name}
 Email: {email}
@@ -56,11 +58,49 @@ Desired Timeline: {timeline}
 Details:
 {details}
 """
+
+        # Confirmation email to the USER
+        confirm_msg = Message(
+            subject="We received your message — HampCo Web Design",
+            recipients=[email]
+        )
+        confirm_msg.body = f"""Hi {name},
+
+Thanks for reaching out to HampCo Web Design! I got your message and will reply soon.
+
+Here’s what you sent:
+- Project Type: {project_type}
+- Budget: {budget}
+- Timeline: {timeline}
+
+Details:
+{details}
+
+If you need to add anything else, just reply to this email.
+
+— HampCo Web Design
+"""
+        # Optional HTML version (nice to have)
+        confirm_msg.html = f"""
+        <p>Hi {name},</p>
+        <p>Thanks for reaching out to <strong>HampCo Web Design</strong>! I got your message and will reply soon.</p>
+        <p><strong>Your submission</strong></p>
+        <ul>
+          <li><strong>Project Type:</strong> {project_type}</li>
+          <li><strong>Budget:</strong> {budget}</li>
+          <li><strong>Timeline:</strong> {timeline}</li>
+        </ul>
+        <p style="white-space:pre-wrap">{details}</p>
+        <p>If you need to add anything else, just reply to this email.</p>
+        <p>— HampCo Web Design</p>
+        """
+
         try:
-            mail.send(msg)
+            mail.send(owner_msg)
+            mail.send(confirm_msg)
             return redirect(url_for('thank_you'))
         except Exception:
-            flash("Sorry, something went wrong. Please try again later.")
+            flash("Sorry, something went wrong sending email. Please try again later.")
             return redirect(url_for('contact'))
 
     return render_template('contact.html')
